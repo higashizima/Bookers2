@@ -5,12 +5,11 @@ class BooksController < ApplicationController
   end
 
   def index
-    @book = Book.new
     @books = Book.all
   end
   
   def create
-     applicatio_create
+     application_create
   end
 
   def show

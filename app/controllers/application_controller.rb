@@ -11,10 +11,11 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:introduction])
   end
   
   
-  def applicatio_create
+  def application_create
      @book = Book.new(book_params)
      @book.user_id = current_user.id
     if @book.save

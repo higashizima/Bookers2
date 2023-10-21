@@ -1,11 +1,10 @@
-<h1>User詳細</h1>
+<% flash.each do |message_type, message| %>
+  <%= content_tag :div, message, class: message_type %>
+<% end %>
+
+<%= render 'books/list', book: @book, user: @user %>
 
 
-<p>投稿ユーザー画像：<%= image_tag @user.get_profile_image(100,100) %></p>
-<p>なまえ：<%= @user.name %></p>
-  
-<%= render 'books/list' %>
-  
   <% @books.each do |book| %>
   <div>
     <%= link_to book_path(book.id) do %>

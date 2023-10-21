@@ -1,8 +1,13 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!, except: [:top, :about]
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   def after_sign_in_path_for(resource)
-    root_path
+    "/users/#{current_user.id}"
+  end
+  
+  def after_sign_out_path_for(resource) 
+    "/"
   end
   
 
@@ -19,7 +24,7 @@ class ApplicationController < ActionController::Base
      @book = Book.new(book_params)
      @book.user_id = current_user.id
     if @book.save
-      flash[:notice] = "Book was successfully created."
+      flash[:notice] = "You have created book successfully."
       redirect_to book_path(@book.id)
     else
       @books = Book.all 

@@ -1,8 +1,4 @@
-
-<p>投稿ユーザー画像：<%= image_tag @user.get_profile_image(100,100) %></p>
-<p>なまえ：<%= @user.name %></p>
-
-<%= render 'books/list' %>
+<%= render 'books/list', book: @book, user: current_user %>
 
 
 <% @users.each do |user| %>
